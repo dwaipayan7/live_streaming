@@ -41,7 +41,7 @@ List<StreamItems> streamItems = [
     color: Colors.blue,
     image:
     "https://media.istockphoto.com/id/1452486049/photo/young-woman-plays-video-game-online-and-streaming-at-home.jpg?s=612x612&w=0&k=20&c=OoJeAC-A5NPDYOeJCN4OA1YOTfdKA1HDwr-pK8t_k6E=",
-    streamTitle: "Yeay Update Ep Ep",
+    streamTitle: "Yeah Update Ep Ep",
     viewer: "1.2k",
     followers: "132k",
     coverImage:
