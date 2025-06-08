@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:live_streaming/cors/color/colors.dart';
 import 'package:live_streaming/features/models/model.dart';
 import 'package:live_streaming/features/models/stream_category.dart';
@@ -138,7 +139,7 @@ class _StreamAppHomeScreenState extends State<StreamAppHomeScreen> {
                       childAspectRatio: 0.7,
                     ),
                     itemBuilder: (context, index) {
-                      final stream = streamItems[index];
+                      final streamItems = stream[index];
 
                       return GestureDetector(
                         onTap: () {},
@@ -153,7 +154,7 @@ class _StreamAppHomeScreenState extends State<StreamAppHomeScreen> {
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(20),
                                       child: Image.network(
-                                        stream.image,
+                                        streamItems.image,
                                         width: size.width * 0.47,
                                         height: size.height * 0.25,
                                         fit: BoxFit.cover,
@@ -183,7 +184,7 @@ class _StreamAppHomeScreenState extends State<StreamAppHomeScreen> {
                                                 ),
                                                 SizedBox(width: 3),
                                                 Text(
-                                                  stream.viewer,
+                                                  streamItems.viewer,
                                                   style: TextStyle(
                                                     color: Colors.white,
                                                   ),
@@ -223,7 +224,7 @@ class _StreamAppHomeScreenState extends State<StreamAppHomeScreen> {
                                       bottom: 7,
                                       left: 15,
                                       child: Text(
-                                        stream.streamTitle,
+                                        streamItems.streamTitle,
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
@@ -247,7 +248,7 @@ class _StreamAppHomeScreenState extends State<StreamAppHomeScreen> {
                                           ),
                                           child: CircleAvatar(
                                             backgroundImage: NetworkImage(
-                                              stream.url,
+                                              streamItems.url,
                                             ),
                                           ),
                                         ),
@@ -257,7 +258,7 @@ class _StreamAppHomeScreenState extends State<StreamAppHomeScreen> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            stream.name,
+                                            streamItems.name,
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 16,
@@ -266,7 +267,7 @@ class _StreamAppHomeScreenState extends State<StreamAppHomeScreen> {
                                           ),
 
                                           Text(
-                                            "${stream.followers} Followers",
+                                            "${streamItems.followers} Followers",
                                             style: TextStyle(
                                               color: Colors.white60,
                                             ),
@@ -292,8 +293,67 @@ class _StreamAppHomeScreenState extends State<StreamAppHomeScreen> {
                 ),
               ],
             ),
+
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: SizedBox(
+                height: 70,
+                child: ClipRRect(
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      color: Colors.transparent,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Icon(
+                                Iconsax.home5,
+                                color: Colors.white,
+                                size: 30,
+                              ),
+
+                              Positioned(
+                                bottom: -15,
+                                right: 0,
+                                left: 0,
+                                child: CircleAvatar(radius: 3),
+                              ),
+                            ],
+                          ),
+
+                          Icon(Iconsax.chart, color: Colors.white60, size: 30),
+                          SizedBox(width: 15),
+                          Icon(
+                            Iconsax.message,
+                            color: Colors.white60,
+                            size: 30,
+                          ),
+                          // SizedBox(width: 15),
+                          Icon(
+                            Icons.person_2_outlined,
+                            color: Colors.white60,
+                            size: 30,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.purpleAccent,
+        shape: CircleBorder(),
+        child: Icon(Icons.add, size: 30, color: Colors.white),
       ),
     );
   }
@@ -309,6 +369,7 @@ class _StreamAppHomeScreenState extends State<StreamAppHomeScreen> {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 7),
             child: Stack(
+              clipBehavior: Clip.none,
               children: [
                 Column(
                   children: [
