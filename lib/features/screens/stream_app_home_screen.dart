@@ -6,6 +6,8 @@ import 'package:live_streaming/cors/color/colors.dart';
 import 'package:live_streaming/features/models/model.dart';
 import 'package:live_streaming/features/models/stream_category.dart';
 
+import 'live_stream_page.dart';
+
 class StreamAppHomeScreen extends StatefulWidget {
   const StreamAppHomeScreen({super.key});
 
@@ -142,7 +144,15 @@ class _StreamAppHomeScreenState extends State<StreamAppHomeScreen> {
                       final streamItems = stream[index];
 
                       return GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  LiveStreamPage(streamItems: streamItems),
+                            ),
+                          );
+                        },
                         child: SizedBox(
                           child: SingleChildScrollView(
                             physics: NeverScrollableScrollPhysics(),
@@ -153,11 +163,14 @@ class _StreamAppHomeScreenState extends State<StreamAppHomeScreen> {
                                   children: [
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(20),
-                                      child: Image.network(
-                                        streamItems.image,
-                                        width: size.width * 0.47,
-                                        height: size.height * 0.25,
-                                        fit: BoxFit.cover,
+                                      child: Hero(
+                                        tag: streamItems.image,
+                                        child: Image.network(
+                                          streamItems.image,
+                                          width: size.width * 0.47,
+                                          height: size.height * 0.25,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
 
