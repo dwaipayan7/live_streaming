@@ -149,7 +149,7 @@ class _StreamAppHomeScreenState extends State<StreamAppHomeScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  LiveStreamPage(streamItems: streamItems),
+                                  VideoLiveScreen(streamItems: streamItems),
                             ),
                           );
                         },
